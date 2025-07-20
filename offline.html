@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline - ARY Photography</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #000000 0%, #1A0B3D 25%, #2D1B69 50%, #8B2F8B 75%, #C2185B 100%);
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-attachment: fixed;
+            background-size: 100% 400%;
+            animation: gradientAnimation 60s ease infinite;
+            text-align: center;
+        }
+        
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 0% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+        
+        .container {
+            max-width: 600px;
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+        }
+        
+        h1 {
+            color: #C2185B;
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+        }
+        
+        p {
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+        
+        .icon {
+            font-size: 5rem;
+            margin-bottom: 20px;
+            color: #C2185B;
+        }
+        
+        .button {
+            display: inline-block;
+            background: linear-gradient(45deg, #C2185B, #8B2F8B, #2D1B69);
+            background-size: 200% 200%;
+            animation: gradientAnimation 10s ease infinite;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            margin-top: 20px;
+        }
+        
+        .button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(194, 24, 91, 0.5);
+        }
+        
+        .cached-content {
+            margin-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 20px;
+        }
+        
+        .cached-content h2 {
+            color: #ffffff;
+            margin-bottom: 15px;
+        }
+        
+        .cached-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .cached-link {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 25px;
+            color: #ffffff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .cached-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+    </style>
+    <link rel="manifest" href="/manifest.json">
+</head>
+<body>
+    <div class="container">
+        <div class="icon">📶</div>
+        <h1>You're Offline</h1>
+        <p>It looks like you've lost your internet connection. Don't worry - you can still view previously visited pages from ARY Photography.</p>
+        <p>Connect to the internet to see the latest content and images.</p>
+        
+        <a href="/" class="button">Try Again</a>
+        
+        <div class="cached-content">
+            <h2>Available Offline</h2>
+            <p>You can still access these pages:</p>
+            <div class="cached-links">
+                <a href="/" class="cached-link">Home</a>
+                <a href="/index.html#portfolio" class="cached-link">Portfolio</a>
+                <a href="/index.html#about" class="cached-link">About</a>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Check if we're back online
+        window.addEventListener('online', () => {
+            window.location.reload();
+        });
+        
+        // Register service worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js')
+                .then(registration => {
+                    console.log('Service Worker registered with scope:', registration.scope);
+                })
+                .catch(error => {
+                    console.error('Service Worker registration failed:', error);
+                });
+        }
+    </script>
+</body>
+</html>

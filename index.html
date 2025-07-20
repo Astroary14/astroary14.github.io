@@ -1,0 +1,2102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Core website scripts -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARY Photography - Mobile Nature Photography</title>
+    
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://formsubmit.co; media-src 'self' blob:; font-src 'self'; connect-src 'self' https://formsubmit.co; frame-ancestors 'none'; form-action 'self' https://formsubmit.co; base-uri 'self'; object-src 'none'; manifest-src 'self'; worker-src 'self'; child-src 'none'; upgrade-insecure-requests; block-all-mixed-content">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta http-equiv="Referrer-Policy" content="no-referrer">
+    <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=(), autoplay=(), display-capture=(), document-domain=(), encrypted-media=(), fullscreen=(), interest-cohort=(), picture-in-picture=()">
+    <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains; preload">
+    <meta http-equiv="Cross-Origin-Embedder-Policy" content="require-corp">
+    <meta http-equiv="Cross-Origin-Opener-Policy" content="same-origin">
+    <meta http-equiv="Cross-Origin-Resource-Policy" content="same-origin">
+    <meta name="format-detection" content="telephone=no, email=no">
+    
+    <!-- PWA Support -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#C2185B">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="ARY Photography">
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+    
+    <!-- Performance optimizations with SRI -->
+    <link rel="preload" href="bg.mp4" as="video" type="video/mp4" crossorigin="anonymous">
+    <link rel="preload" href="1000114679.png" as="image" crossorigin="anonymous">
+    
+    <!-- SEO Optimization -->
+    <meta name="description" content="Professional mobile photography by ARY, capturing nature and urban landscapes with a Motorola Edge 20 Pro.">
+    <meta name="keywords" content="mobile photography, nature photography, ARY Photography, Motorola Edge 20 Pro">
+    <meta name="author" content="ARY Photography">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+    
+    <!-- Social Media Integration -->
+    <meta property="og:title" content="ARY Photography - Mobile Nature Photography">
+    <meta property="og:description" content="Professional mobile photography capturing nature's beauty with just a smartphone.">
+    <meta property="og:image" content="Wallpaper/IMG_20240531_182636110.jpg">
+    <meta property="og:url" content="https://aryphotography18.com">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            opacity: 0.5;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #000000 0%, #1A0B3D 25%, #2D1B69 50%, #8B2F8B 75%, #C2185B 100%);
+            color: #cccccc;
+            overflow-x: hidden;
+            background-attachment: fixed;
+            background-size: 100% 400%;
+            animation: gradientAnimation 60s ease infinite;
+        }
+        
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 0% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+        
+        /* Text color animation synchronized with background */
+        .text-gradient {
+            transition: color 0.5s ease;
+            animation: textColorAnimation 60s ease infinite;
+            animation-delay: -15s; /* Adjusted to better sync with background */
+        }
+        
+        @keyframes textColorAnimation {
+            0% { color: #ffffff; }       /* Black background - white text */
+            25% { color: #ffffff; }      /* Dark blue background - white text */
+            40% { color: #000000; }      /* Purple background - black text */
+            60% { color: #000000; }      /* Pink background - black text */
+            75% { color: #000000; }      /* Pink background - black text */
+            85% { color: #ffffff; }      /* Back to dark blue - white text */
+            100% { color: #ffffff; }     /* Black background - white text */
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Disable right-click and image protection */
+        img:not(.logo-image), video {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-user-drag: none;
+            -khtml-user-drag: none;
+            -moz-user-drag: none;
+            -o-user-drag: none;
+            user-drag: none;
+            pointer-events: none;
+        }
+        
+        .portfolio-item {
+            pointer-events: auto;
+        }
+        
+        .portfolio-image {
+            pointer-events: auto;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: transparent;
+            z-index: 1000;
+            padding: 12px 0;
+            transition: background 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .nav-logo h2 {
+            color: #ffffff;
+            font-size: 1.6rem;
+            letter-spacing: 4px;
+        }
+        
+        .logo-text {
+            color: #ffffff !important;
+            animation: none !important;
+        }
+        
+        .logo-image {
+            height: 50px;
+            width: auto;
+            display: block;
+            pointer-events: auto;
+            margin: 2px 0;
+            margin-left: -15px;
+        }
+        
+        /* Nav menu styles moved to hamburger-simple.css */
+        
+        /* Hide navigation menu on all screen sizes */
+        .nav-menu {
+            display: none !important;
+        }
+        
+        /* Only show when active */
+        .nav-menu.active {
+            display: flex !important;
+        }
+        
+        /* Always show hamburger */
+        .hamburger {
+            display: flex !important;
+        }
+        
+        .nav-menu a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 400;
+            transition: color 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .nav-menu a:hover {
+            color: #00d4ff;
+        }
+        
+        /* Hamburger and nav menu styles moved to hamburger-simple.css */
+        
+        /* Loading Screen */
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000000;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 1;
+            transition: opacity 1s ease-out;
+        }
+        
+        #loading-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translateX(-50%) translateY(-50%) scale(0.7);
+            object-fit: cover;
+        }
+        
+        #main-site {
+            display: none;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+        
+        .hero-content {
+            text-align: center;
+            z-index: 3;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+        
+        .hero-badge {
+            display: inline-block;
+            background: rgba(194, 24, 91, 0.2);
+            color: #C2185B;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            border: 1px solid rgba(194, 24, 91, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(194, 24, 91, 0.5);
+        }
+        
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #00BFFF;
+            text-shadow: 0 0 20px rgba(0, 191, 255, 0.5);
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: rgba(204, 204, 204, 0.8);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            letter-spacing: 3px;
+            color: #ffffff;
+        }
+        
+        .hero-subtitle {
+            font-size: 2.5rem;
+            color: #ffffff;
+            margin-bottom: 2rem;
+            text-shadow: none;
+        }
+        
+        .hero-cta {
+            margin: 2rem 0;
+        }
+        
+        .hero-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #C2185B, #8B2F8B, #2D1B69);
+            background-size: 200% 200%;
+            animation: gradientAnimation 10s ease infinite;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .hero-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(194, 24, 91, 0.5);
+        }
+        
+        .hero-button::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.5s ease;
+            z-index: -1;
+        }
+        
+        .hero-button:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+        
+        .hero-scroll-indicator {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+            animation: fadeInUp 2s ease infinite;
+            pointer-events: auto;
+            z-index: 5;
+        }
+        
+        .hero-scroll-indicator:hover {
+            opacity: 1;
+        }
+        
+        .scroll-arrow {
+            width: 20px;
+            height: 20px;
+            border-right: 2px solid #ffffff;
+            border-bottom: 2px solid #ffffff;
+            transform: rotate(45deg);
+            margin-bottom: 10px;
+        }
+        
+        .scroll-text {
+            color: #ffffff;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0.3;
+                transform: translateY(10px);
+            }
+            50% {
+                opacity: 0.7;
+                transform: translateY(0);
+            }
+            100% {
+                opacity: 0.3;
+                transform: translateY(10px);
+            }
+        }
+        
+        /* Portfolio Section */
+        .portfolio-section {
+            padding: 150px 0 100px 0;
+            height: 100vh;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+            background: transparent;
+        }
+        
+        .portfolio-wrapper {
+            height: 400vh;
+        }
+        
+        .portfolio-spacer {
+            height: 300vh;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 80px;
+            letter-spacing: 2px;
+        }
+        
+        /* Gradient text colors for section titles */
+        #portfolio .section-title {
+            color: #ffffff;
+        }
+        
+        #services .section-title {
+            color: #000000;
+        }
+        
+        #about .section-title {
+            color: #000000;
+        }
+        
+        #contact .section-title {
+            color: #000000;
+        }
+        
+        .social-section .section-title {
+            color: #000000;
+        }
+        
+        .portfolio-container {
+            overflow: visible;
+            width: 100%;
+            position: relative;
+            margin-top: 50px;
+            z-index: 2;
+        }
+        
+        .portfolio-grid {
+            display: flex;
+            gap: 30px;
+            width: calc(6 * 400px + 5 * 30px);
+            transform: translateX(40%);
+            transition: transform 0.3s ease-out;
+        }
+        
+        .portfolio-item {
+            position: relative;
+            height: 400px;
+            width: 400px;
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            flex-shrink: 0;
+            z-index: 2;
+        }
+        
+        .portfolio-item:hover {
+            box-shadow: 0 0 20px #FF69B4, 0 0 40px #FF69B4;
+        }
+        
+        .portfolio-container {
+            overflow: visible;
+        }
+        
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .portfolio-image {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            transition: transform 0.4s ease;
+        }
+        
+        .portfolio-item:hover .portfolio-image {
+            transform: scale(1.05);
+        }
+        
+        .portfolio-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+            padding: 30px;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+        }
+        
+        .portfolio-item:hover .portfolio-overlay {
+            transform: translateY(0);
+        }
+        
+        .category-tag {
+            display: inline-block;
+            background: rgba(194, 24, 91, 0.2);
+            color: #C2185B;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            border: 1px solid rgba(194, 24, 91, 0.4);
+            text-transform: uppercase;
+            text-shadow: 0 0 10px rgba(194, 24, 91, 0.5);
+        }
+        
+        .portfolio-overlay h3 {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+            color: #ffffff;
+        }
+        
+        .portfolio-overlay p {
+            color: #ffffff;
+            font-size: 1rem;
+        }
+        
+        /* Services Section */
+        .services-section {
+            padding: 100px 0;
+            background: transparent;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 80px;
+        }
+        
+        .service-card {
+            text-align: center;
+            padding: 40px 30px;
+            background: linear-gradient(135deg, #2D1B69 0%, #1A0B3D 100%);
+            border: none;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .service-card::after {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: linear-gradient(135deg, #ffffff, #000000, #1A0B3D, #2D1B69, #8B2F8B, #C2185B, #ffffff);
+            background-size: 300% 300%;
+            animation: gradientAnimation 15s ease infinite;
+            border-radius: 17px;
+            z-index: -1;
+            opacity: 0.6;
+            filter: blur(8px);
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-card:hover::after {
+            opacity: 0.9;
+            filter: blur(12px);
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+        }
+        
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(0, 191, 255, 0.4);
+        }
+        
+        .service-card p {
+            color: #ffffff;
+        }
+        
+        /* About Section */
+        .about-section {
+            padding: 100px 0;
+            background: transparent;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .about-text .section-title {
+            text-align: left;
+            margin-bottom: 40px;
+        }
+        
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            color: #000000;
+        }
+        
+        .about-content {
+            position: relative;
+        }
+        
+        .about-image-container {
+            position: relative;
+            height: 400px;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+        
+        .about-image-glow {
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            right: -15px;
+            bottom: -15px;
+            background: linear-gradient(45deg, #ffdc80 0%, #fcaf45 10%, #f77737 20%, #f56040 30%, #fd1d1d 40%, #e1306c 50%, #c13584 60%, #833ab4 70%, #5851db 80%, #405de6 90%, #ffdc80 100%);
+            background-size: 500% 500%;
+            border-radius: 25px;
+            z-index: 1;
+            filter: blur(15px);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            animation: instagramGradient 8s linear infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes colorShift {
+            0% { background-position: 0% 50%; }
+            25% { background-position: 50% 0%; }
+            50% { background-position: 100% 50%; }
+            75% { background-position: 50% 100%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .about-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            z-index: 2;
+        }
+        
+        .about-image {
+            transition: transform 0.5s ease;
+        }
+        
+        .about-image-container:hover .about-image {
+            transform: scale(1.05);
+        }
+        
+        .about-image-container:hover .about-image-glow {
+            opacity: 0.8;
+            filter: blur(12px);
+        }
+        
+        @keyframes breathingGlow {
+            0% { opacity: 0.4; filter: blur(15px); }
+            50% { opacity: 0.6; filter: blur(18px); }
+            100% { opacity: 0.4; filter: blur(15px); }
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            padding: 100px 0;
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto 60px auto;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            background: rgba(45, 27, 105, 0.3);
+            border: 1px solid rgba(194, 24, 91, 0.3);
+            border-radius: 8px;
+            color: #ffffff;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #00BFFF;
+            box-shadow: 0 0 15px rgba(0, 191, 255, 0.3);
+        }
+        
+        .submit-btn {
+            background: linear-gradient(45deg, #FF69B4, #C2185B, #8B2F8B);
+            background-size: 200% 200%;
+            animation: gradientAnimation 8s ease infinite;
+            color: #ffffff;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px #FF69B4, 0 0 15px rgba(255, 105, 180, 0.8);
+        }
+        
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+            background: linear-gradient(45deg, #FF69B4, #C2185B, #8B2F8B, #FF69B4);
+            background-size: 300% 300%;
+            animation: gradientAnimation 8s ease infinite;
+            z-index: -1;
+            border-radius: 28px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .submit-btn:hover::before {
+            opacity: 1;
+        }
+        
+        .contact-content {
+            margin-top: 80px;
+        }
+        
+        .contact-item {
+            margin-bottom: 30px;
+        }
+        
+        .contact-item h3 {
+            color: #000000;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .contact-item a {
+            color: #cccccc;
+            text-decoration: none;
+        }
+        
+        .contact-note {
+            background: linear-gradient(135deg, #2D1B69 0%, #1A0B3D 100%);
+            padding: 30px;
+            border-left: 4px solid #C2185B;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(194, 24, 91, 0.1);
+        }
+        
+        .contact-note h3 {
+            color: #000000;
+            margin-bottom: 20px;
+        }
+        
+        .contact-note p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+            color: #ffffff;
+        }
+        
+        /* Social Section */
+        .social-section {
+            padding: 80px 0;
+            background: transparent;
+            text-align: center;
+        }
+        
+        .instagram-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px 40px;
+            background: linear-gradient(45deg, #ffdc80 0%, #fcaf45 10%, #f77737 20%, #f56040 30%, #fd1d1d 40%, #e1306c 50%, #c13584 60%, #833ab4 70%, #5851db 80%, #405de6 90%, #ffdc80 100%);
+            background-size: 500% 500%;
+            animation: instagramGradient 8s linear infinite;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 18px;
+            margin: 30px 0;
+            transition: all 0.3s ease;
+            box-shadow: none;
+            position: relative;
+            z-index: 2;
+        }
+        
+        :root {
+            --glow-color: #C2185B;
+        }
+        
+        .instagram-link::after {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: var(--glow-color);
+            z-index: -1;
+            filter: blur(8px);
+            border-radius: 55px;
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+        
+        .instagram-link:hover::after {
+            opacity: 0.8;
+            background: var(--glow-color);
+        }
+        
+        @keyframes instagramGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .instagram-link:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(220, 39, 67, 0.7);
+        }
+        
+        .instagram-link:hover::after {
+            filter: blur(12px);
+            opacity: 0.8;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+        }
+        
+        /* Hot pink gradient when background is dark */
+        @keyframes hotPinkGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Black gradient when background is pink */
+        @keyframes blackGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .instagram-icon svg {
+            width: 30px;
+            height: 30px;
+        }
+        
+        .social-text {
+            margin-top: 30px;
+            color: #000000;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 1.1rem;
+        }
+        
+        /* Footer */
+        .footer {
+            padding: 40px 0;
+            text-align: center;
+            opacity: 0.7;
+        }
+        
+        .footer p {
+            color: #ffffff;
+        }
+        
+        /* Visit Counter */
+        .visit-counter {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(45deg, #000000, #1A0B3D, #2D1B69, #8B2F8B, #C2185B);
+            background-size: 300% 300%;
+            animation: gradientAnimation 30s ease infinite;
+            padding: 10px 15px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            color: #ffffff;
+            border: none;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .visit-counter.show {
+            opacity: 1;
+        }
+        
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .lightbox.show {
+            opacity: 1;
+        }
+        
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+            transform: scale(0.8);
+            transition: transform 0.4s ease;
+        }
+        
+        .lightbox.show img {
+            transform: scale(1);
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            width: 40px;
+            height: 40px;
+            background: rgba(204, 204, 204, 0.2);
+            border: 2px solid #cccccc;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 20px;
+            color: #cccccc;
+            transition: all 0.3s ease;
+        }
+        
+        .lightbox-close:hover {
+            background: rgba(204, 204, 204, 0.3);
+            transform: scale(1.1);
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.5rem; }
+            .hero-subtitle { font-size: 1.8rem; }
+            .section-title { font-size: 2rem; }
+            .about-content { grid-template-columns: 1fr; gap: 40px; }
+            .services-grid { grid-template-columns: 1fr; }
+            
+            .nav-menu {
+                display: none !important;
+            }
+            
+            .hero-stats {
+                gap: 20px;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+            
+            .portfolio-item {
+                width: 300px;
+                height: 300px;
+            }
+            
+            .portfolio-grid {
+                width: calc(6 * 300px + 5 * 20px);
+                gap: 20px;
+            }
+            
+            .contact-form {
+                max-width: 100%;
+                padding: 0 20px;
+            }
+            
+            .form-group input,
+            .form-group textarea {
+                padding: 12px;
+            }
+            
+            .submit-btn {
+                width: 100%;
+                padding: 15px;
+            }
+            
+            .contact-info {
+                text-align: center;
+                margin-top: 30px;
+            }
+            
+            .contact-note {
+                margin: 20px;
+            }
+            
+            .instagram-link {
+                padding: 15px 30px;
+                font-size: 16px;
+            }
+            
+            .social-text {
+                padding: 0 20px;
+            }
+        }
+    </style>
+    <!-- Core website scripts -->
+    <style>
+        /* Force hide navigation menu by default */
+        .nav-menu {
+            display: none;
+            visibility: hidden;
+            position: fixed;
+            top: 76px;
+            right: -350px;
+            width: 350px;
+            height: calc(100vh - 76px);
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(26, 11, 61, 0.9) 25%, rgba(45, 27, 105, 0.9) 50%, rgba(139, 47, 139, 0.9) 75%, rgba(194, 24, 91, 0.9) 100%);
+            background-size: 400% 400%;
+            animation: gradientAnimation 60s ease infinite;
+            backdrop-filter: blur(10px);
+            padding: 2rem 1rem;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between; /* Changed to space-between */
+            z-index: 999;
+            opacity: 0;
+            transition: all 0.4s ease-in-out;
+        }
+        
+        /* Show menu when active */
+        .nav-menu.active {
+            display: flex;
+            visibility: visible;
+            right: 0;
+            opacity: 1;
+        }
+        
+        /* Instagram button container at bottom of menu */
+        .instagram-menu-container {
+            margin-top: auto;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            padding: 20px 0;
+        }
+        
+        /* Menu items styling */
+        .nav-menu li {
+            margin: 15px 0;
+            list-style: none;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .nav-menu a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 400;
+            transition: color 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: block;
+            padding: 10px 0;
+        }
+        
+        .nav-menu a:hover {
+            color: #00d4ff;
+        }
+        
+        /* Hamburger button styling - SIMPLE */
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            padding: 0;
+            width: 30px;
+            height: 24px;
+            outline: none;
+            z-index: 1001;
+            position: relative;
+        }
+        
+        .hamburger span {
+            display: block;
+            width: 30px;
+            height: 3px;
+            margin: 3px 0;
+            transition: all 0.3s ease;
+            transform-origin: center;
+            background-color: #ffffff;
+            border-radius: 2px;
+        }
+        
+        /* Hamburger animation */
+        .hamburger.active span:nth-child(1) {
+            transform: translateY(6px) rotate(45deg);
+        }
+        
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+        
+        .hamburger.active span:nth-child(3) {
+            transform: translateY(-6px) rotate(-45deg);
+        }
+    </style>
+    <style>
+    .instagram-menu-link::after {
+        content: '';
+        position: absolute;
+        top: -3px;
+        left: -3px;
+        right: -3px;
+        bottom: -3px;
+        background: var(--glow-color);
+        z-index: -1;
+        filter: blur(8px);
+        border-radius: 55px;
+        opacity: 0;
+        transition: all 0.5s ease;
+    }
+    
+    .instagram-menu-link:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(220, 39, 67, 0.7);
+    }
+    
+    .instagram-menu-link:hover::after {
+        filter: blur(12px);
+        opacity: 0.8;
+        top: -5px;
+        left: -5px;
+        right: -5px;
+        bottom: -5px;
+    }
+    </style>
+    <script src="js/script.js"></script>
+    <script src="js/core-fixes.js"></script>
+    <script src="menu-fix.js"></script>
+    <script src="portfolio-scroll.js"></script>
+    <script src="natural-fireflies.js"></script>
+    <script src="lazy-loader.js"></script>
+    <script src="lightbox-a11y.js"></script>
+    <script src="image-protection.js"></script>
+    <script src="cookie-consent.js"></script>
+    
+    <!-- PWA Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('Service Worker registered with scope:', registration.scope);
+                    })
+                    .catch(error => {
+                        console.error('Service Worker registration failed:', error);
+                    });
+            });
+        }
+    </script>
+
+</head>
+<body id="top">
+    <!-- Particles Background -->
+    <canvas id="particles-canvas"></canvas>
+    
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <video autoplay muted id="loading-video" preload="auto" playsinline loop>
+            <source src="bg.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <!-- Main Site -->
+    <div id="main-site">
+    <!-- Navigation -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <div class="nav-logo" style="min-width: 350px;">
+                <img src="1000114679.png" alt="ARY PHOTOGRAPHY" style="height: 50px; width: auto; cursor: pointer;" class="logo-image">
+            </div>
+            <div class="nav-menu" id="nav-menu" role="menu" style="display: none !important;">
+                <ul style="width: 100%; padding: 0; margin: 0;">
+                    <li role="none"><a href="#home" role="menuitem">Home</a></li>
+                    <li role="none"><a href="#portfolio" role="menuitem">Portfolio</a></li>
+                    <li role="none"><a href="#services" role="menuitem">Services</a></li>
+                    <li role="none"><a href="#about" role="menuitem">About</a></li>
+                    <li role="none"><a href="#contact" role="menuitem">Contact</a></li>
+                </ul>
+                
+                <div style="width: 100%; padding: 20px 0; display: flex; justify-content: center;">
+                    <a href="https://www.instagram.com/ary_photography18/" target="_blank" role="menuitem" class="instagram-menu-link" style="display: inline-flex; align-items: center; gap: 15px; padding: 15px 30px; background: linear-gradient(45deg, #ffdc80 0%, #fcaf45 10%, #f77737 20%, #f56040 30%, #fd1d1d 40%, #e1306c 50%, #c13584 60%, #833ab4 70%, #5851db 80%, #405de6 90%, #ffdc80 100%); background-size: 500% 500%; animation: instagramGradient 8s linear infinite; color: #ffffff; text-decoration: none; border-radius: 50px; font-weight: bold; font-size: 16px; position: relative; z-index: 2; box-shadow: 0 5px 15px rgba(220, 39, 67, 0.5); transition: all 0.3s ease;">
+                        <div class="instagram-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </div>
+                        @ary_photography18
+                    </a>
+                </div>
+            </div>
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">📱 Mobile Photography Artist</div>
+            <h1 class="hero-title">VISION BEYOND LIMITS</h1>
+            <h2 class="hero-subtitle">CAPTURING LIFE'S MOMENTS</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.9; line-height: 1.6; color: #ffffff;">Transforming everyday scenes into extraordinary art<br>Using only the Motorola Edge 20 Pro</p>
+            
+            <div class="hero-cta">
+                <a href="#portfolio" class="hero-button">Explore Gallery</a>
+            </div>
+            
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">500+</span>
+                    <span class="stat-label">Captures</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">2+</span>
+                    <span class="stat-label">Years</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Mobile</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="hero-scroll-indicator">
+            <div class="scroll-arrow"></div>
+            <div class="scroll-text">Scroll to explore</div>
+        </div>
+    </section>
+
+    <!-- Portfolio Wrapper -->
+    <div class="portfolio-wrapper">
+        <!-- Portfolio Section -->
+        <section id="portfolio" class="portfolio-section">
+            <div class="container">
+                <h2 class="section-title">MY CAPTURES</h2>
+                <div class="portfolio-container">
+                    <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <div class="portfolio-image" data-src="Wallpaper/IMG_20240531_182636110.jpg">
+                        <div class="portfolio-overlay">
+                            <span class="category-tag">Landscape</span>
+                            <h3>Golden Horizon</h3>
+                            <p>Nature's daily masterpiece painted across the sky</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-image" data-src="Wallpaper/IMG_20241011_203636007.jpg">
+                        <div class="portfolio-overlay">
+                            <span class="category-tag">Urban</span>
+                            <h3>City Nights</h3>
+                            <p>Urban landscapes illuminated by artificial light</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-image" data-src="Wallpaper/IMG_20220604_093032988_BURST000_COVER-01.jpeg">
+                        <div class="portfolio-overlay">
+                            <span class="category-tag">Macro</span>
+                            <h3>Natural Details</h3>
+                            <p>Close-up beauty of nature's intricate patterns</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-image" data-src="Wallpaper/IMG_20241011_201905158.jpg">
+                        <div class="portfolio-overlay">
+                            <span class="category-tag">Golden Hour</span>
+                            <h3>Evening Glow</h3>
+                            <p>Capturing the magic of sunset moments</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-image" data-src="Wallpaper/IMG_20220316_142405328-01.jpeg">
+                        <div class="portfolio-overlay">
+                            <span class="category-tag">Architecture</span>
+                            <h3>Urban Geometry</h3>
+                            <p>Architectural lines and modern structures</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-image" data-src="Wallpaper/IMG_20240607_181102529~2.jpg">
+                        <div class="portfolio-overlay">
+                            <span class="category-tag">Nature</span>
+                            <h3>Wild Beauty</h3>
+                            <p>Discovering beauty in untamed nature</p>
+                        </div>
+                    </div>
+                </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Portfolio Spacer -->
+        <div class="portfolio-spacer"></div>
+    </div>
+
+    <!-- Services Section -->
+    <section id="services" class="services-section">
+        <div class="container">
+            <h2 class="section-title">MY APPROACH</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">📱</div>
+                    <h3>Mobile Photography</h3>
+                    <p>Using Motorola Edge 20 Pro to capture stunning images with advanced mobile camera technology</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🌿</div>
+                    <h3>Nature Focus</h3>
+                    <p>Specializing in landscapes, wildlife, plants, and the natural world around us</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">👁️</div>
+                    <h3>Spontaneous Captures</h3>
+                    <p>Photographing anything that catches my eye - from everyday moments to extraordinary scenes</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2 class="section-title">ABOUT ARY</h2>
+                    <p>Welcome to my world of mobile photography! I'm Ary, a passionate photographer who believes that the best camera is the one you have with you. Armed with my Motorola Edge 20 Pro, I explore and capture the beauty that surrounds us every day.</p>
+                    <p>My journey began with a simple belief - that extraordinary moments exist everywhere, waiting to be discovered. Through my mobile lens, I specialize in nature photography, urban landscapes, and spontaneous street captures.</p>
+                    <p>From golden hour sunsets to intricate macro details, I document the world with curiosity and creativity. My work proves that incredible photography doesn't always require expensive equipment - just passion, patience, and a keen eye.</p>
+                </div>
+                <div class="about-image-container">
+                    <div class="about-image-glow"></div>
+                    <div class="about-image" data-background="Wallpaper/ary.jpg"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2 class="section-title">CONNECT WITH ME</h2>
+            <div class="contact-content">
+                <div class="contact-form">
+                    <form id="contactForm" action="https://formsubmit.co/aryphotography18@gmail.com" method="post">
+                        <input type="hidden" name="_subject" value="New message from ARY Photography Website">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_next" value="">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_autoresponse" value="Thank you for contacting ARY Photography! I've received your message and will get back to you soon.">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder="Your Name" required pattern="[A-Za-z\s]{2,50}" title="Name should contain 2-50 letters and spaces only">
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="Your Email" required pattern="[^\s@]+@[^\s@]+\.[^\s@]+" title="Please enter a valid email address">
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" placeholder="Your Message" rows="5" required minlength="10" title="Message must be at least 10 characters"></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <h3>Email</h3>
+                            <p><span onclick="copyEmail(this)" style="cursor: pointer; color: #00BFFF; text-shadow: 0 0 10px rgba(0, 191, 255, 0.4);">aryphotography18@gmail.com</span></p>
+                        </div>
+                        <div class="contact-item">
+                            <h3>Equipment</h3>
+                            <p>Motorola Edge 20 Pro</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-note">
+                    <h3>Note</h3>
+                    <p>I don't offer professional sessions or bookings. This gallery showcases my personal photography journey and passion for capturing nature and life through mobile photography.</p>
+                    <p>Feel free to reach out if you'd like to discuss photography techniques or share your own mobile photography experiences!</p>
+                    <p>I specialize in nature photography, urban landscapes, and spontaneous captures using mobile technology. Always excited to connect with fellow photography enthusiasts and share insights about mobile photography techniques.</p>
+                    <p>Response time is typically within 24-48 hours. Looking forward to hearing from you!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Section -->
+    <section class="social-section">
+        <div class="container">
+            <h2 class="section-title">FOLLOW MY JOURNEY</h2>
+            <a href="https://www.instagram.com/ary_photography18/" target="_blank" class="instagram-link">
+                <div class="instagram-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                </div>
+                @ary_photography18
+            </a>
+            <p class="social-text">Follow me on Instagram for daily updates and behind-the-scenes content from my photography journey.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 ARY Photography. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <!-- Visit Counter -->
+    <div class="visit-counter">
+        <span id="visit-count">0</span> visits
+    </div>
+    
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-close" id="lightbox-close">×</div>
+        <img id="lightbox-img" src="" alt="">
+    </div>
+    </div> <!-- End main-site -->
+
+    <script>
+        // Main initialization
+        document.addEventListener('DOMContentLoaded', function() {
+            // Particles animation
+            const canvas = document.getElementById('particles-canvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Set canvas size
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+            
+            // Firefly settings
+            const fireflyCount = 40;
+            const fireflies = [];
+            let mouseX = 0;
+            let mouseY = 0;
+            let lastMouseMoveTime = 0;
+            
+            // Track mouse position for firefly attraction
+            document.addEventListener('mousemove', function(e) {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                lastMouseMoveTime = Date.now();
+            });
+            
+            // Create fireflies
+            for (let i = 0; i < fireflyCount; i++) {
+                fireflies.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    size: Math.random() * 3 + 2,
+                    speedX: Math.random() * 0.7 - 0.35,
+                    speedY: Math.random() * 0.7 - 0.35,
+                    brightness: Math.random() * 0.5 + 0.3,
+                    pulseSpeed: Math.random() * 0.1 + 0.01,
+                    pulsePhase: Math.random() * Math.PI * 2,
+                    attractionStrength: Math.random() * 0.05 + 0.02,
+                    wanderStrength: Math.random() * 0.1 + 0.05,
+                    wanderPhaseX: Math.random() * Math.PI * 2,
+                    wanderPhaseY: Math.random() * Math.PI * 2,
+                    wanderSpeed: Math.random() * 0.002 + 0.001
+                });
+            }
+            
+            // Animation loop
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                const currentTime = Date.now();
+                const mouseActive = currentTime - lastMouseMoveTime < 2000;
+                
+                // Update and draw fireflies
+                for (let i = 0; i < fireflies.length; i++) {
+                    const f = fireflies[i];
+                    
+                    // Update wander phases
+                    f.wanderPhaseX += f.wanderSpeed;
+                    f.wanderPhaseY += f.wanderSpeed;
+                    
+                    // Calculate wander movement
+                    const wanderX = Math.sin(f.wanderPhaseX) * f.wanderStrength;
+                    const wanderY = Math.sin(f.wanderPhaseY) * f.wanderStrength;
+                    
+                    // Apply base movement
+                    f.x += f.speedX + wanderX;
+                    f.y += f.speedY + wanderY;
+                    
+                    // Apply attraction to mouse if mouse is active
+                    if (mouseActive) {
+                        const dx = mouseX - f.x;
+                        const dy = mouseY - f.y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        
+                        if (distance < 300) {
+                            const attractionFactor = (1 - distance / 300) * f.attractionStrength;
+                            f.x += dx * attractionFactor;
+                            f.y += dy * attractionFactor;
+                        }
+                    }
+                    
+                    // Wrap around edges
+                    if (f.x < 0) f.x = canvas.width;
+                    if (f.x > canvas.width) f.x = 0;
+                    if (f.y < 0) f.y = canvas.height;
+                    if (f.y > canvas.height) f.y = 0;
+                    
+                    // Calculate pulsing brightness
+                    const pulse = Math.sin(currentTime * f.pulseSpeed + f.pulsePhase) * 0.2 + 0.8;
+                    const brightness = f.brightness * pulse;
+                    
+                    // Draw firefly with glow effect
+                    const gradient = ctx.createRadialGradient(f.x, f.y, 0, f.x, f.y, f.size * 3);
+                    gradient.addColorStop(0, `rgba(255, 255, 150, ${brightness})`);
+                    gradient.addColorStop(0.3, `rgba(255, 200, 100, ${brightness * 0.5})`);
+                    gradient.addColorStop(1, 'rgba(255, 150, 50, 0)');
+                    
+                    ctx.beginPath();
+                    ctx.arc(f.x, f.y, f.size * 3, 0, Math.PI * 2);
+                    ctx.fillStyle = gradient;
+                    ctx.fill();
+                    
+                    // Draw bright center
+                    ctx.beginPath();
+                    ctx.arc(f.x, f.y, f.size / 2, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(255, 255, 200, ${brightness})`;  
+                    ctx.fill();
+                }
+                
+                requestAnimationFrame(animate);
+            }
+            
+            animate();
+            
+            // Loading screen and visit counter
+            const loadingScreen = document.getElementById('loading-screen');
+            const mainSite = document.getElementById('main-site');
+            
+            // Ensure video plays
+            const loadingVideo = document.getElementById('loading-video');
+            loadingVideo.play().catch(error => {
+                console.log('Auto-play was prevented:', error);
+                // Show a play button if autoplay fails
+                const playButton = document.createElement('button');
+                playButton.textContent = 'Click to Play';
+                playButton.style.position = 'absolute';
+                playButton.style.zIndex = '10000';
+                playButton.style.padding = '10px 20px';
+                playButton.style.background = 'rgba(0,0,0,0.5)';
+                playButton.style.color = 'white';
+                playButton.style.border = 'none';
+                playButton.style.borderRadius = '5px';
+                playButton.style.cursor = 'pointer';
+                loadingScreen.appendChild(playButton);
+                playButton.onclick = () => {
+                    loadingVideo.play();
+                    playButton.remove();
+                };
+            });
+            
+            // Smooth transition from loading screen to main site
+            setTimeout(() => {
+                loadingScreen.style.opacity = '0';
+                mainSite.style.display = 'block';
+                
+                // Remove loading screen after fade completes
+                setTimeout(() => {
+                    loadingScreen.style.display = 'none';
+                }, 1000);
+            }, 3000);
+            
+            // Visit counter
+            let visits = localStorage.getItem('siteVisits') || 0;
+            visits = parseInt(visits) + 1;
+            localStorage.setItem('siteVisits', visits);
+            document.getElementById('visit-count').textContent = visits;
+            
+            // Lightbox functionality
+            const portfolioItems = document.querySelectorAll('.portfolio-item');
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            
+            const imageUrls = [
+                'Wallpaper/IMG_20240531_182636110.jpg',
+                'Wallpaper/IMG_20241011_203636007.jpg',
+                'Wallpaper/IMG_20220604_093032988_BURST000_COVER-01.jpeg',
+                'Wallpaper/IMG_20241011_201905158.jpg',
+                'Wallpaper/IMG_20220316_142405328-01.jpeg',
+                'Wallpaper/IMG_20240607_181102529~2.jpg'
+            ];
+            
+            portfolioItems.forEach((item, index) => {
+                item.addEventListener('click', () => {
+                    lightboxImg.src = imageUrls[index];
+                    lightbox.style.display = 'flex';
+                    setTimeout(() => {
+                        lightbox.classList.add('show');
+                    }, 10);
+                });
+            });
+            
+            function closeLightbox() {
+                lightbox.classList.remove('show');
+                setTimeout(() => {
+                    lightbox.style.display = 'none';
+                }, 400);
+            }
+            
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) {
+                    closeLightbox();
+                }
+            });
+            
+            document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+            
+            // Hamburger menu is handled by hamburger-menu.js
+            
+            // Add text-gradient class to all text elements that should change color
+            document.querySelectorAll('.section-title, .hero-title, .hero-subtitle, p, h3').forEach(el => {
+                el.classList.add('text-gradient');
+            });
+            
+            // Keep certain elements with fixed colors
+            document.querySelectorAll('.portfolio-overlay h3, .portfolio-overlay p, .contact-note p, .nav-logo h2 a, .service-card h3, .service-card p').forEach(el => {
+                el.classList.remove('text-gradient');
+                el.style.color = '#ffffff';
+            });
+            
+            // Portfolio scroll animation and visit counter
+            const visitCounter = document.querySelector('.visit-counter');
+            const portfolioGrid = document.querySelector('.portfolio-grid');
+            const instagramLink = document.querySelector('.instagram-link');
+            
+            // Get scroll indicator element
+            const scrollIndicator = document.querySelector('.hero-scroll-indicator');
+            const navbar = document.querySelector('.navbar');
+            let hasScrolled = false;
+            
+            // Initially visible
+            scrollIndicator.style.opacity = '0.7';
+            
+            window.addEventListener('scroll', () => {
+                // Change navbar background on scroll
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+                
+                // Hide scroll indicator when scrolling begins and only do it once
+                if (window.scrollY > 10 && !hasScrolled) {
+                    scrollIndicator.style.opacity = '0';
+                    scrollIndicator.style.visibility = 'hidden';
+                    hasScrolled = true;
+                }
+                
+                // Change Instagram button glow color based on scroll position
+                const scrollPosition = window.scrollY;
+                const documentHeight = document.body.scrollHeight - window.innerHeight;
+                const scrollPercentage = scrollPosition / documentHeight;
+                
+                // When background is pink (middle of page), use black glow and text
+                if (scrollPercentage > 0.4 && scrollPercentage < 0.8) {
+                    instagramLink.style.setProperty('--glow-color', '#000000');
+                    
+                    // Force text to black in pink section
+                    document.querySelectorAll('.text-gradient').forEach(el => {
+                        el.style.color = '#000000';
+                    });
+                } else {
+                    instagramLink.style.setProperty('--glow-color', '#C2185B');
+                    
+                    // Force text to white in dark sections
+                    document.querySelectorAll('.text-gradient').forEach(el => {
+                        el.style.color = '#ffffff';
+                    });
+                }
+                
+                // Portfolio scroll animation is now handled by portfolio-scroll.js
+                
+                // Visit counter visibility
+                const scrollHeight = document.documentElement.scrollHeight;
+                const scrollTop = document.documentElement.scrollTop;
+                const clientHeight = document.documentElement.clientHeight;
+                
+                if (scrollTop + clientHeight >= scrollHeight - 100) {
+                    visitCounter.classList.add('show');
+                } else {
+                    visitCounter.classList.remove('show');
+                }
+            });
+            
+            // Enhanced security measures
+            document.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+            });
+            
+            // Block common keyboard shortcuts
+            document.addEventListener('keydown', function(e) {
+                if (e.ctrlKey && (e.key === 's' || e.key === 'S' || e.key === 'u' || e.key === 'U')) {
+                    e.preventDefault();
+                }
+                if (e.key === 'F12') {
+                    e.preventDefault();
+                }
+            });
+            
+            // Block WebRTC IP leakage
+            if (window.RTCPeerConnection) {
+                window.RTCPeerConnection = function() { return null; };
+            }
+            if (window.mozRTCPeerConnection) {
+                window.mozRTCPeerConnection = function() { return null; };
+            }
+            if (window.webkitRTCPeerConnection) {
+                window.webkitRTCPeerConnection = function() { return null; };
+            }
+            
+            // Prevent clickjacking
+            if (window.top !== window.self) {
+                window.top.location = window.self.location;
+            }
+            
+            // Enhanced fingerprinting protection
+            Object.defineProperty(navigator, 'plugins', { value: [], writable: false });
+            Object.defineProperty(navigator, 'platform', { value: 'Win32', writable: false });
+            Object.defineProperty(navigator, 'hardwareConcurrency', { value: 4, writable: false });
+            Object.defineProperty(navigator, 'deviceMemory', { value: undefined, writable: false });
+            Object.defineProperty(navigator, 'connection', { value: undefined, writable: false });
+            
+            // Block timing attacks
+            const originalNow = performance.now;
+            performance.now = function() {
+                return Math.floor(originalNow.call(performance) / 100) * 100;
+            };
+            
+            // Rate limiting for form submissions
+            let lastSubmissionTime = 0;
+            const SUBMISSION_COOLDOWN = 30000; // 30 seconds between submissions
+            
+            // Contact form handling with validation
+            document.getElementById('contactForm').addEventListener('submit', function(e) {
+                // Don't prevent default - let the form submit naturally to FormSubmit
+                
+                // Check rate limiting
+                const now = Date.now();
+                if (now - lastSubmissionTime < SUBMISSION_COOLDOWN) {
+                    e.preventDefault();
+                    alert(`Please wait ${Math.ceil((SUBMISSION_COOLDOWN - (now - lastSubmissionTime)) / 1000)} seconds before submitting again.`);
+                    return;
+                }
+                
+                // Form validation
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const message = document.getElementById('message').value.trim();
+                let isValid = true;
+                
+                // Reset previous error states
+                document.querySelectorAll('.form-error').forEach(el => el.remove());
+                document.querySelectorAll('.form-group input, .form-group textarea').forEach(el => {
+                    el.style.borderColor = '';
+                });
+                
+                // Validate name
+                if (name === '') {
+                    e.preventDefault();
+                    showError('name', 'Please enter your name');
+                    isValid = false;
+                }
+                
+                // Validate email
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    e.preventDefault();
+                    showError('email', 'Please enter a valid email address');
+                    isValid = false;
+                }
+                
+                // Validate message
+                if (message === '') {
+                    e.preventDefault();
+                    showError('message', 'Please enter your message');
+                    isValid = false;
+                } else if (message.length < 10) {
+                    e.preventDefault();
+                    showError('message', 'Message must be at least 10 characters');
+                    isValid = false;
+                }
+                
+                if (isValid) {
+                    // Update last submission time for rate limiting
+                    lastSubmissionTime = Date.now();
+                    
+                    // Show loading indicator
+                    const submitBtn = document.querySelector('.submit-btn');
+                    submitBtn.textContent = 'Sending...';
+                    
+                    // Let the form submit naturally to FormSubmit.co
+                    // Success message will be shown on return to the page
+                }
+                
+                function showError(fieldId, message) {
+                    const field = document.getElementById(fieldId);
+                    field.style.borderColor = '#ff3333';
+                    
+                    const errorDiv = document.createElement('div');
+                    errorDiv.className = 'form-error';
+                    errorDiv.textContent = message;
+                    errorDiv.style.color = '#ff3333';
+                    errorDiv.style.fontSize = '0.8rem';
+                    errorDiv.style.marginTop = '5px';
+                    
+                    field.parentNode.appendChild(errorDiv);
+                }
+            });
+            
+            // Check for thank you parameter in URL
+            if (window.location.search.includes('thankyou=true')) {
+                const formGroups = document.querySelectorAll('.form-group');
+                const lastFormGroup = formGroups[formGroups.length - 1];
+                
+                const successMessage = document.createElement('div');
+                successMessage.className = 'form-success';
+                successMessage.textContent = `Thank you! Your message has been sent. We'll get back to you soon.`;
+                successMessage.style.color = '#00ff00';
+                successMessage.style.padding = '10px';
+                successMessage.style.marginTop = '10px';
+                successMessage.style.borderRadius = '5px';
+                successMessage.style.backgroundColor = 'rgba(0, 255, 0, 0.1)';
+                
+                lastFormGroup.parentNode.insertBefore(successMessage, lastFormGroup.nextSibling);
+                
+                // Remove success message after 5 seconds
+                setTimeout(() => {
+                    successMessage.style.opacity = '0';
+                    setTimeout(() => successMessage.remove(), 500);
+                }, 5000);
+                
+                // Remove the query parameter from URL
+                history.replaceState(null, '', window.location.pathname);
+            }
+            
+            // Block drag and drop
+            document.addEventListener('dragover', function(e) { e.preventDefault(); });
+            document.addEventListener('drop', function(e) { e.preventDefault(); });
+            
+            // Disable text selection (except for email)
+            document.addEventListener('selectstart', function(e) {
+                if (!e.target.onclick || !e.target.onclick.toString().includes('copyEmail')) {
+                    e.preventDefault();
+                }
+            });
+            
+            // Block malicious redirects (allow only Instagram)
+            const originalOpen = window.open;
+            window.open = function(url, target) {
+                if (url && url.includes('instagram.com/ary_photography18')) {
+                    return originalOpen.call(this, url, target);
+                }
+                return null;
+            };
+            
+            // Copy email function
+            window.copyEmail = function(element) {
+                const email = element.textContent;
+                navigator.clipboard.writeText(email).then(() => {
+                    const originalText = element.textContent;
+                    element.textContent = 'Email copied!';
+                    element.style.color = '#00ff00';
+                    setTimeout(() => {
+                        element.textContent = originalText;
+                        element.style.color = '#00BFFF';
+                        element.style.textShadow = '0 0 10px rgba(0, 191, 255, 0.4)';
+                    }, 2000);
+                });
+            };
+            
+            // Lazy loading for portfolio images with responsive images
+            const lazyLoadImages = () => {
+                const portfolioImages = document.querySelectorAll('.portfolio-image[data-src]');
+                
+                // Check if Intersection Observer is supported
+                if ('IntersectionObserver' in window) {
+                    const imageObserver = new IntersectionObserver((entries, observer) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                const img = entry.target;
+                                const src = img.getAttribute('data-src');
+                                const imgPath = src.substring(0, src.lastIndexOf('.'));
+                                const imgExt = src.substring(src.lastIndexOf('.'));
+                                
+                                // Check if WebP is supported
+                                const webpSupported = localStorage.getItem('webp_supported');
+                                
+                                if (webpSupported === 'true' && imgExt !== '.webp') {
+                                    // Use WebP if supported and available
+                                    const webpPath = `Wallpaper/optimized/${imgPath.split('/').pop()}.webp`;
+                                    
+                                    // Check if WebP version exists
+                                    fetch(webpPath, { method: 'HEAD' })
+                                        .then(response => {
+                                            if (response.ok) {
+                                                img.style.backgroundImage = `url('${webpPath}')`;
+                                            } else {
+                                                // Fallback to original format with responsive sizing
+                                                setResponsiveBackground(img, src);
+                                            }
+                                        })
+                                        .catch(() => {
+                                            // Fallback to original format
+                                            setResponsiveBackground(img, src);
+                                        });
+                                } else {
+                                    // Use responsive original format
+                                    setResponsiveBackground(img, src);
+                                }
+                                
+                                // Remove data-src attribute to prevent loading again
+                                img.removeAttribute('data-src');
+                                
+                                // Stop observing the image
+                                observer.unobserve(img);
+                            }
+                        });
+                    }, {
+                        rootMargin: '200px 0px' // Load images 200px before they appear in viewport
+                    });
+                    
+                    portfolioImages.forEach(img => {
+                        imageObserver.observe(img);
+                    });
+                } else {
+                    // Fallback for browsers that don't support Intersection Observer
+                    portfolioImages.forEach(img => {
+                        const src = img.getAttribute('data-src');
+                        setResponsiveBackground(img, src);
+                        img.removeAttribute('data-src');
+                    });
+                }
+            };
+            
+            // Set responsive background based on screen size
+            function setResponsiveBackground(element, src) {
+                const viewportWidth = window.innerWidth;
+                const imgPath = src.substring(0, src.lastIndexOf('.'));
+                const imgExt = src.substring(src.lastIndexOf('.'));
+                
+                // Choose appropriate image size based on viewport
+                let imageSrc = src;
+                
+                if (viewportWidth <= 768) {
+                    // Check if smaller version exists
+                    const smallPath = `${imgPath}-small${imgExt}`;
+                    fetch(smallPath, { method: 'HEAD' })
+                        .then(response => {
+                            if (response.ok) {
+                                element.style.backgroundImage = `url('${smallPath}')`;
+                            } else {
+                                element.style.backgroundImage = `url('${src}')`;
+                            }
+                        })
+                        .catch(() => {
+                            element.style.backgroundImage = `url('${src}')`;
+                        });
+                } else {
+                    element.style.backgroundImage = `url('${src}')`;
+                }
+            }
+            
+            // Check WebP support
+            function checkWebpSupport() {
+                const canvas = document.createElement('canvas');
+                if (canvas.getContext && canvas.getContext('2d')) {
+                    const webpSupported = canvas.toDataURL('image/webp').indexOf('data:image/webp') === 0;
+                    localStorage.setItem('webp_supported', webpSupported);
+                } else {
+                    localStorage.setItem('webp_supported', false);
+                }
+            }
+            
+            // Check WebP support on load
+            checkWebpSupport();
+            
+            // Initialize lazy loading
+            lazyLoadImages();
+        });
+    </script>
+    <!-- End of scripts -->
+</body>
+</html>
