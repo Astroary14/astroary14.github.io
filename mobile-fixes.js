@@ -7,6 +7,37 @@ document.addEventListener('DOMContentLoaded', function() {
     // Check if we're on a mobile device
     const isMobile = window.innerWidth <= 768;
     
+    // Improve performance on mobile devices
+    if (isMobile) {
+        // Reduce particle count for better performance
+        if (window.fireflyCount) {
+            window.fireflyCount = Math.min(window.fireflyCount, 15);
+        }
+        
+        // Disable complex animations
+        const styleSheet = document.createElement('style');
+        styleSheet.textContent = `
+            @media (max-width: 768px) {
+                /* Simplify animations for better performance */
+                .hero-button::after, .submit-btn::before, .instagram-link::after {
+                    display: none !important;
+                }
+                
+                /* Reduce animation complexity */
+                @keyframes gradientAnimation {
+                    0% { background-position: 0% 0%; }
+                    100% { background-position: 0% 100%; }
+                }
+                
+                /* Simplify background animations */
+                body {
+                    animation: gradientAnimation 120s ease infinite !important;
+                }
+            }
+        `;
+        document.head.appendChild(styleSheet);
+    }
+    
     if (isMobile) {
         // Fix portfolio scrolling on mobile
         const portfolioGrid = document.querySelector('.portfolio-grid');

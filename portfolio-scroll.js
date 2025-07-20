@@ -3,7 +3,19 @@ document.addEventListener('DOMContentLoaded', function() {
     const portfolioGrid = document.querySelector('.portfolio-grid');
     const portfolioSection = document.getElementById('portfolio');
     
+    // Check if we're on a mobile device
+    const isMobile = window.innerWidth <= 768;
+    
     if (portfolioSection && portfolioGrid) {
+        // On mobile, disable scroll animation completely
+        if (isMobile) {
+            portfolioGrid.style.transform = 'none';
+            portfolioGrid.style.width = '100%';
+            portfolioGrid.style.display = 'flex';
+            portfolioGrid.style.flexDirection = 'column';
+            portfolioGrid.style.alignItems = 'center';
+            return; // Exit early, don't set up scroll listener
+        }
         // Set initial position to show first placard
         portfolioGrid.style.transform = 'translateX(40%)';
         

@@ -7,6 +7,43 @@
     // Execute immediately to avoid FOUC (Flash of Unstyled Content)
     const isMobile = window.innerWidth <= 768;
     
+    // Disable scroll-based portfolio animations on mobile
+    if (isMobile) {
+        // Add this style immediately
+        const styleSheet = document.createElement('style');
+        styleSheet.textContent = `
+            @media (max-width: 768px) {
+                /* Fix portfolio section */
+                .portfolio-section {
+                    height: auto !important;
+                    position: relative !important;
+                    top: auto !important;
+                    padding: 80px 0 40px 0 !important;
+                }
+                
+                .portfolio-wrapper {
+                    height: auto !important;
+                }
+                
+                .portfolio-spacer {
+                    height: 20px !important;
+                    display: none !important;
+                }
+                
+                /* Fix portfolio grid */
+                .portfolio-grid {
+                    transform: none !important;
+                    width: 100% !important;
+                    display: flex !important;
+                    flex-direction: column !important;
+                    align-items: center !important;
+                    gap: 20px !important;
+                }
+            }
+        `;
+        document.head.appendChild(styleSheet);
+    }
+    
     if (isMobile) {
         // Immediately fix portfolio grid on mobile
         const portfolioGrid = document.querySelector('.portfolio-grid');

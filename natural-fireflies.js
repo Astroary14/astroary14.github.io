@@ -5,6 +5,9 @@ window.addEventListener('load', function() {
 });
 
 function initFireflies() {
+    // Check if we're on a mobile device
+    const isMobile = window.innerWidth <= 768;
+    
     // Create canvas
     const canvas = document.createElement('canvas');
     canvas.style.position = 'fixed';
@@ -14,6 +17,12 @@ function initFireflies() {
     canvas.style.height = '100%';
     canvas.style.pointerEvents = 'none';
     canvas.style.zIndex = '9999';
+    
+    // Reduce opacity on mobile
+    if (isMobile) {
+        canvas.style.opacity = '0.5';
+    }
+    
     document.body.appendChild(canvas);
     
     function resizeCanvas() {
@@ -35,12 +44,13 @@ function initFireflies() {
     
     console.log('Found buttons:', buttons.length);
     
-    // Create fireflies
+    // Create fireflies - reduce count on mobile
     const fireflies = [];
+    const maxFirefliesPerButton = isMobile ? 1 : 3; // Fewer fireflies on mobile
     
     buttons.forEach(button => {
-        // 0-3 fireflies per button
-        const count = Math.floor(Math.random() * 4);
+        // Reduced fireflies per button
+        const count = Math.floor(Math.random() * (maxFirefliesPerButton + 1));
         
         for (let i = 0; i < count; i++) {
             const rect = button.getBoundingClientRect();
@@ -98,6 +108,12 @@ function initFireflies() {
     
     // Animation loop
     function animate() {
+        // Skip frames on mobile for better performance
+        if (isMobile && Math.random() > 0.7) {
+            requestAnimationFrame(animate);
+            return;
+        }
+        
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         
         const now = Date.now() / 1000;

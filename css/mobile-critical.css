@@ -1,0 +1,82 @@
+/* Critical mobile fixes that need to be loaded early */
+
+@media (max-width: 768px) {
+    /* Fix loading screen video */
+    #loading-video {
+        transform: translateX(-50%) translateY(-50%) scale(1.0) !important;
+        object-fit: cover !important;
+        height: 100% !important;
+        width: 100% !important;
+    }
+    
+    /* Fix portfolio section */
+    .portfolio-section {
+        height: auto !important;
+        position: relative !important;
+        top: auto !important;
+        padding: 80px 0 40px 0 !important;
+    }
+    
+    .portfolio-wrapper {
+        height: auto !important;
+    }
+    
+    .portfolio-spacer {
+        height: 20px !important;
+        display: none !important;
+    }
+    
+    /* Fix portfolio grid */
+    .portfolio-grid {
+        transform: none !important;
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 20px !important;
+    }
+    
+    /* Fix portfolio overlay */
+    .portfolio-overlay {
+        transform: translateY(0) !important;
+        background: linear-gradient(transparent, rgba(0, 0, 0, 0.9)) !important;
+        opacity: 0.9;
+    }
+    
+    /* Fix footer overlap */
+    .footer {
+        padding-bottom: 60px !important;
+    }
+    
+    /* Fix visit counter position */
+    .visit-counter {
+        bottom: 10px !important;
+        z-index: 100 !important;
+    }
+    
+    /* Optimize animations */
+    .hero-button::after, 
+    .submit-btn::before, 
+    .instagram-link::after {
+        display: none !important;
+    }
+    
+    @keyframes gradientAnimation {
+        0% { background-position: 0% 0%; }
+        100% { background-position: 0% 100%; }
+    }
+    
+    body {
+        animation: gradientAnimation 120s ease infinite !important;
+    }
+    
+    #particles-canvas {
+        opacity: 0.3 !important;
+    }
+}
+
+/* Mobile-optimized class for JS detection */
+.mobile-optimized .portfolio-item {
+    transform: none !important;
+    transition: none !important;
+}

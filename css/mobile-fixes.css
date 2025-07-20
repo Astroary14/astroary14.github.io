@@ -1,7 +1,30 @@
 /* Mobile Responsiveness Fixes
    These styles will only apply to mobile devices and won't affect desktop appearance */
 
-@media (max-width: 768px) {
+@media (max-width: 768px) {    
+    /* Fix loading video zoom issue */
+    #loading-video {
+        transform: translateX(-50%) translateY(-50%) scale(1.0) !important;
+        object-fit: cover !important;
+        height: 100% !important;
+        width: 100% !important;
+    }
+    
+    /* Fix portfolio section overlap issues */
+    .portfolio-section {
+        height: auto !important;
+        position: relative !important;
+        padding: 80px 0 40px 0 !important;
+    }
+    
+    .portfolio-wrapper {
+        height: auto !important;
+    }
+    
+    .portfolio-spacer {
+        height: 20px !important;
+    }
+
     /* General fixes */
     body {
         overflow-x: hidden;
@@ -98,6 +121,29 @@
     .lightbox-close {
         top: 15px;
         right: 15px;
+    }
+    
+    /* Fix portfolio overlay text */
+    .portfolio-overlay {
+        transform: translateY(0) !important;
+        background: linear-gradient(transparent, rgba(0, 0, 0, 0.9)) !important;
+        opacity: 0.9;
+    }
+    
+    /* Fix footer overlap */
+    .footer {
+        padding-bottom: 60px !important;
+    }
+    
+    /* Fix visit counter position */
+    .visit-counter {
+        bottom: 10px !important;
+        z-index: 100 !important;
+    }
+    
+    /* Improve animation performance on mobile */
+    #particles-canvas {
+        opacity: 0.3 !important;
     }
 }
 
