@@ -1,0 +1,38 @@
+# Protect images from hotlinking
+RewriteEngine On
+RewriteCond %{HTTP_REFERER} !^https://(www\.)?aryphotography18\.com/ [NC]
+RewriteCond %{HTTP_REFERER} !^http://(www\.)?aryphotography18\.com/ [NC]
+RewriteCond %{HTTP_REFERER} !^$
+RewriteRule \.(jpg|jpeg|png|gif|webp)$ - [F]
+
+# Add security headers
+<IfModule mod_headers.c>
+    # Prevent browsers from MIME-sniffing
+    Header always set X-Content-Type-Options "nosniff"
+    
+    # Referrer policy
+    Header always set Referrer-Policy "same-origin"
+    
+    # Disable image right-click
+    Header always set X-Frame-Options "DENY"
+    
+    # Content Security Policy
+    Header always set Content-Security-Policy "default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://formsubmit.co; media-src 'self' blob:; font-src 'self'; connect-src 'self' https://formsubmit.co; frame-ancestors 'none'; form-action 'self' https://formsubmit.co; base-uri 'self'; object-src 'none'; manifest-src 'self'; worker-src 'self'; child-src 'none'"
+    
+    # Cache control for images
+    <FilesMatch "\.(jpg|jpeg|png|gif|webp)$">
+        Header set Cache-Control "max-age=31536000, public"
+    </FilesMatch>
+</IfModule>
+
+# Disable directory browsing
+Options -Indexes
+
+# Protect against image scraping
+<IfModule mod_rewrite.c>
+    RewriteCond %{HTTP_USER_AGENT} ^.*(bot|spider|crawler|scraper|wget|curl).*$ [NC]
+    RewriteRule \.(jpg|jpeg|png|gif|webp)$ - [F,L]
+</IfModule>
+
+# Add custom error page for forbidden access
+ErrorDocument 403 /image-protection-error.html
