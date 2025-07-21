@@ -67,5 +67,26 @@ window.onload = function() {
                 hamburger.classList.remove('active');
             };
         }
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            // Check if menu is open
+            if (navMenu.style.display === 'flex' && navMenu.style.opacity === '1') {
+                // Check if click is outside menu and not on hamburger
+                if (!navMenu.contains(event.target) && !hamburger.contains(event.target)) {
+                    // Hide menu with animation
+                    navMenu.style.transition = 'all 0.3s ease-in-out';
+                    navMenu.style.opacity = '0';
+                    navMenu.style.right = '-350px';
+                    
+                    // Hide after animation completes
+                    setTimeout(function() {
+                        navMenu.style.display = 'none';
+                    }, 300);
+                    
+                    hamburger.classList.remove('active');
+                }
+            }
+        });
     }
 };

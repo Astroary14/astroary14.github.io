@@ -186,15 +186,26 @@ function initFireflies() {
             const pulse = Math.sin(now * firefly.pulseSpeed * 10 + firefly.pulsePhase) * 0.4 + 0.6;
             const brightness = firefly.brightness * pulse;
             
+            // Check if we're in B&W mode
+            const isBWMode = document.body.classList.contains('bw-mode') || window.fireflyMode === 'bw';
+            
             // Draw firefly with glow effect
             const gradient = ctx.createRadialGradient(
                 firefly.x, firefly.y, 0, 
                 firefly.x, firefly.y, firefly.size * 4
             );
             
-            gradient.addColorStop(0, `rgba(255, 255, 150, ${brightness})`);
-            gradient.addColorStop(0.3, `rgba(255, 200, 100, ${brightness * 0.7})`);
-            gradient.addColorStop(1, 'rgba(255, 150, 50, 0)');
+            if (isBWMode) {
+                // Grey gradient for B&W mode
+                gradient.addColorStop(0, `rgba(100, 100, 100, ${brightness})`);
+                gradient.addColorStop(0.3, `rgba(80, 80, 80, ${brightness * 0.7})`);
+                gradient.addColorStop(1, 'rgba(50, 50, 50, 0)');
+            } else {
+                // Color gradient
+                gradient.addColorStop(0, `rgba(255, 255, 150, ${brightness})`);
+                gradient.addColorStop(0.3, `rgba(255, 200, 100, ${brightness * 0.7})`);
+                gradient.addColorStop(1, 'rgba(255, 150, 50, 0)');
+            }
             
             ctx.beginPath();
             ctx.arc(firefly.x, firefly.y, firefly.size * 4, 0, Math.PI * 2);
@@ -204,13 +215,13 @@ function initFireflies() {
             // Draw bright center
             ctx.beginPath();
             ctx.arc(firefly.x, firefly.y, firefly.size / 1.5, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(255, 255, 200, ${brightness})`;
+            ctx.fillStyle = isBWMode ? `rgba(120, 120, 120, ${brightness})` : `rgba(255, 255, 200, ${brightness})`;
             ctx.fill();
             
-            // Add a white highlight for extra visibility
+            // Add a highlight for extra visibility
             ctx.beginPath();
             ctx.arc(firefly.x, firefly.y, firefly.size / 4, 0, Math.PI * 2);
-            ctx.fillStyle = 'white';
+            ctx.fillStyle = isBWMode ? '#888888' : 'white';
             ctx.fill();
         });
         
@@ -218,4 +229,10 @@ function initFireflies() {
     }
     
     animate();
+    
+    // Listen for mode changes
+    document.addEventListener('fireflyModeChange', function(e) {
+        // Mode change will be picked up in the next animation frame
+        console.log('Firefly mode changed to:', e.detail.mode);
+    });
 }
